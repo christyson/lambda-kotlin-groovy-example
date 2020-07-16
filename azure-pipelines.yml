@@ -34,6 +34,7 @@ steps:
       
       cd groovy
       cd build
+      cd libs
       ls
 - task: Bash@3
   displayName: 'Veracode SCA scan'
@@ -65,6 +66,7 @@ steps:
       
       cd kotlin
       cd build
+      cd libs
       ls
 - task: Bash@3
   displayName: 'Veracode SCA scan'
