@@ -27,6 +27,7 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
 - task: Veracode@3
+  displayName: 'Perform Veracode SAST scan on groovy portion'
   inputs:
     ConnectionDetailsSelection: 'Endpoint'
     AnalysisService: 'Veracode'
@@ -40,7 +41,7 @@ steps:
     importResults: false
     failBuildOnPolicyFail: false
 - task: Bash@3
-  displayName: 'Veracode SCA scan'
+  displayName: 'Perform Veracode SCA scan on groovy portion'
   inputs:
      targetType: 'inline'
      script: |
@@ -61,8 +62,22 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
+- task: Veracode@3
+  displayName: 'Perform Veracode SAST scan on kotlin portion'
+  inputs:
+    ConnectionDetailsSelection: 'Endpoint'
+    AnalysisService: 'Veracode'
+    veracodeAppProfile: '$(system.teamProject)_kotlin'
+    version: '$(build.buildNumber)'
+    filepath: '$(System.DefaultWorkingDirectory)/kotlin/build/libs/jvmlangs-kotlin-1.0-SNAPSHOT-all.jar'
+    createSandBox: false
+    createProfile: true
+    failTheBuildIfVeracodeScanDidNotInitiate: false
+    scanStatusCheckInterval: '60'
+    importResults: false
+    failBuildOnPolicyFail: false
 - task: Bash@3
-  displayName: 'Veracode SCA scan'
+  displayName: 'Perform Veracode SCA scan on kotlin portion'
   inputs:
      targetType: 'inline'
      script: |
@@ -73,16 +88,3 @@ steps:
           export SRCCLR_SCM_REV=123456
           cd kotlin
           curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
-- task: Veracode@3
-  inputs:
-    ConnectionDetailsSelection: 'Endpoint'
-    AnalysisService: 'Veracode'
-    veracodeAppProfile: '$(system.teamProject)_kotlin'
-    version: '$(build.buildNumber)'
-    filepath: '$(System.DefaultWorkingDirectory)/kotlin/build/libs/jvmlangs-groovy-1.0-SNAPSHOT-all.jar'
-    createSandBox: false
-    createProfile: true
-    failTheBuildIfVeracodeScanDidNotInitiate: false
-    scanStatusCheckInterval: '60'
-    importResults: false
-    failBuildOnPolicyFail: false
