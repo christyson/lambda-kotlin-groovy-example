@@ -10,7 +10,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '8'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+    cleanDestinationDirectory: false
 - task: Gradle@2
   displayName: 'Build groovy'
   inputs:
