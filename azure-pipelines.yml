@@ -32,6 +32,11 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
+- task: CmdLine@2
+  inputs:
+    script: |
+      pwd
+      ls
 - task: Veracode@3
   inputs:
     ConnectionDetailsSelection: 'Endpoint'
