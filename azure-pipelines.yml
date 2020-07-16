@@ -8,11 +8,12 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+
+steps:
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '8'
     cleanDestinationDirectory: true
-steps:
 - task: Gradle@2
   displayName: 'Build groovy'
   inputs:
