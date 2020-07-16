@@ -35,8 +35,12 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      pwd
-      ls
+      echo pwd
+      echo ls
+      echo cd groovy
+      echo ls
+      echo cd ../kotlin
+      echo ls
 - task: Veracode@3
   inputs:
     ConnectionDetailsSelection: 'Endpoint'
