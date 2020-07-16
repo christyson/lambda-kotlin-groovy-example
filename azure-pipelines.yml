@@ -10,11 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '8'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'PreInstalled'
+
 - task: Gradle@2
   displayName: 'Build groovy'
   inputs:
@@ -40,12 +36,13 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      echo pwd
-      echo ls
-      echo cd groovy
-      echo ls
-      echo cd ../kotlin
-      echo ls
+      java --version
+      pwd
+      ls
+      cd groovy
+      ls
+      cd ../kotlin
+      ls
 - task: Veracode@3
   inputs:
     ConnectionDetailsSelection: 'Endpoint'
