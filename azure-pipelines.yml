@@ -22,7 +22,7 @@ steps:
     gradleWrapperFile: 'groovy/gradlew'
     workingDirectory: '/home/vsts/work/1/s/groovy'
     options: 'shadowjar'
-    tasks: 'build'
+#    tasks: 'build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
@@ -33,7 +33,7 @@ steps:
     gradleWrapperFile: 'kotlin/gradlew'
     workingDirectory: '/home/vsts/work/1/s/kotlin'
     options: 'shadowjar'
-    tasks: 'build'
+#    tasks: 'build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
