@@ -22,22 +22,44 @@ steps:
     gradleWrapperFile: 'groovy/gradlew'
     workingDirectory: '/home/vsts/work/1/s/groovy'
     options: 'shadowjar'
-#    tasks: 'build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
+- task: Bash@3
+  displayName: 'Veracode SCA scan'
+  inputs:
+     targetType: 'inline'
+     script: |
+          export SRCCLR_SCM_URI=https://github.com/christyson/verademo
+          export SRCCLR_API_TOKEN="$(SRCCLR_API_TOKEN)"
+          export SRCCLR_SCM_REF=master
+          export SRCCLR_SCM_REF_TYPE=branch
+          export SRCCLR_SCM_REV=123456
+          cd groovy
+          curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
 - task: Gradle@2
   displayName: 'Build Kotlin'
   inputs:
     gradleWrapperFile: 'kotlin/gradlew'
     workingDirectory: '/home/vsts/work/1/s/kotlin'
     options: 'shadowjar'
-#    tasks: 'build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
+- task: Bash@3
+  displayName: 'Veracode SCA scan'
+  inputs:
+     targetType: 'inline'
+     script: |
+          export SRCCLR_SCM_URI=https://github.com/christyson/verademo
+          export SRCCLR_API_TOKEN="$(SRCCLR_API_TOKEN)"
+          export SRCCLR_SCM_REF=master
+          export SRCCLR_SCM_REF_TYPE=branch
+          export SRCCLR_SCM_REV=123456
+          cd kotlin
+          curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
 - task: CmdLine@2
   inputs:
     script: |
