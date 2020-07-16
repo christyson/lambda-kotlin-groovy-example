@@ -11,9 +11,21 @@ pool:
 
 steps:
 - task: Gradle@2
+  displayName: 'Build groovy'
   inputs:
     gradleWrapperFile: 'groovy/gradlew'
     workingDirectory: '/home/vsts/work/1/s/groovy'
+    options: 'shadowjar'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
+- task: Gradle@2
+  displayName: 'Build Kotlin'
+  inputs:
+    gradleWrapperFile: 'kotlin/gradlew'
+    workingDirectory: '/home/vsts/work/1/s/kotlin'
     options: 'shadowjar'
     tasks: 'build'
     publishJUnitResults: true
