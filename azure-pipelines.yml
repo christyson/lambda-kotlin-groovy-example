@@ -45,11 +45,11 @@ steps:
   inputs:
      targetType: 'inline'
      script: |
-          export SRCCLR_SCM_URI=https://github.com/christyson/verademo
+          export SRCCLR_SCM_URI=https://github.com/christyson/lambda-kotlin-groovy-example_groovy
           export SRCCLR_API_TOKEN="$(SRCCLR_API_TOKEN)"
-          export SRCCLR_SCM_REF=master
-          export SRCCLR_SCM_REF_TYPE=branch
-          export SRCCLR_SCM_REV=123456
+#          export SRCCLR_SCM_REF=master
+#          export SRCCLR_SCM_REF_TYPE=branch
+#          export SRCCLR_SCM_REV=123456
           cd groovy
           curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
 - task: Gradle@2
@@ -81,10 +81,10 @@ steps:
   inputs:
      targetType: 'inline'
      script: |
-          export SRCCLR_SCM_URI=https://github.com/christyson/verademo
+          export SRCCLR_SCM_URI=https://github.com/christyson/lambda-kotlin-groovy-example_kotlin
           export SRCCLR_API_TOKEN="$(SRCCLR_API_TOKEN)"
-          export SRCCLR_SCM_REF=master
-          export SRCCLR_SCM_REF_TYPE=branch
-          export SRCCLR_SCM_REV=123456
+#          export SRCCLR_SCM_REF=master
+#          export SRCCLR_SCM_REF_TYPE=branch
+#          export SRCCLR_SCM_REV=123456
           cd kotlin
           curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
