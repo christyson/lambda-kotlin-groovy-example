@@ -26,16 +26,19 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
-- task: Bash@3
+- task: Veracode@3
   inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      
-      cd groovy
-      cd build
-      cd libs
-      ls
+    ConnectionDetailsSelection: 'Endpoint'
+    AnalysisService: 'Veracode'
+    veracodeAppProfile: '$(system.teamProject)_groovy'
+    version: '$(build.buildNumber)'
+    filepath: '$(System.DefaultWorkingDirectory)/groovy/build/libs/jvmlangs-groovy-1.0-SNAPSHOT-all.jar'
+    createSandBox: false
+    createProfile: true
+    failTheBuildIfVeracodeScanDidNotInitiate: false
+    scanStatusCheckInterval: '60'
+    importResults: false
+    failBuildOnPolicyFail: false
 - task: Bash@3
   displayName: 'Veracode SCA scan'
   inputs:
@@ -59,16 +62,6 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
 - task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      
-      cd kotlin
-      cd build
-      cd libs
-      ls
-- task: Bash@3
   displayName: 'Veracode SCA scan'
   inputs:
      targetType: 'inline'
@@ -84,12 +77,12 @@ steps:
   inputs:
     ConnectionDetailsSelection: 'Endpoint'
     AnalysisService: 'Veracode'
-    veracodeAppProfile: '$(system.teamProject)'
+    veracodeAppProfile: '$(system.teamProject)_kotlin'
     version: '$(build.buildNumber)'
-    filepath: '$(build.artifactstagingdirectory)'
+    filepath: '$(System.DefaultWorkingDirectory)/kotlin/build/libs/jvmlangs-groovy-1.0-SNAPSHOT-all.jar'
     createSandBox: false
     createProfile: true
     failTheBuildIfVeracodeScanDidNotInitiate: false
     scanStatusCheckInterval: '60'
-    importResults: true
+    importResults: false
     failBuildOnPolicyFail: false
