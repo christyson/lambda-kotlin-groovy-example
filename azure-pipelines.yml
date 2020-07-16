@@ -12,12 +12,11 @@ pool:
 steps:
 - task: Gradle@2
   inputs:
+    gradleWrapperFile: 'groovy/gradlew'
     workingDirectory: '/home/vsts/work/1/s/groovy'
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
+    options: 'shadowjar'
+    tasks: 'build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'build'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
