@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'picoded/ubuntu-openjdk-8-jdk'
 
 steps:
 
