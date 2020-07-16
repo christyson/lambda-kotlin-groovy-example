@@ -38,7 +38,7 @@ steps:
     AnalysisService: 'Veracode'
     veracodeAppProfile: '$(system.teamProject)'
     version: '$(build.buildNumber)'
-    filepath: 'build/libs/*.jar'
+    filepath: '$(Build.SourcesDirectory)/build/libs/*.jar'
     createSandBox: false
     createProfile: true
     failTheBuildIfVeracodeScanDidNotInitiate: false
