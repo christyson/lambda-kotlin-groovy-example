@@ -13,7 +13,8 @@ steps:
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '8'
-    cleanDestinationDirectory: true
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
 - task: Gradle@2
   displayName: 'Build groovy'
   inputs:
