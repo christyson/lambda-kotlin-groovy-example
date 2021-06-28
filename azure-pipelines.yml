@@ -90,3 +90,25 @@ steps:
           export SRCCLR_SCM_REV=123456
           cd kotlin
           curl -sSL https://download.sourceclear.com/ci.sh | bash -s -- scan --update-advisor
+
+- task: Veracode Flaw Importer@3
+  inputs:
+    ConnectionDetailsSelection: 'Endpoint'
+    AnalysisService: 'Veracode'
+    veracodeAppProfile: '$(system.teamProject)_kotlin'
+    sandboxName: 
+    importType: 'All Unmitigated Flaws Violating Policy'
+    workItemType: 'Bug'
+    area: '$(system.teamProject)'
+    flawImportLimit: '1000'
+
+- task: Veracode Flaw Importer@3
+  inputs:
+    ConnectionDetailsSelection: 'Endpoint'
+    AnalysisService: 'Veracode'
+    veracodeAppProfile: '$(system.teamProject)_groovy'
+    sandboxName: 
+    importType: 'All Unmitigated Flaws Violating Policy'
+    workItemType: 'Bug'
+    area: '$(system.teamProject)'
+    flawImportLimit: '1000'
